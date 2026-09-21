@@ -59,6 +59,13 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-cosmic-bg: var(--cosmic-bg);
+  --color-cosmic-ink: var(--cosmic-ink);
+  --color-cosmic-gold: var(--cosmic-gold);
+  --color-cosmic-violet: var(--cosmic-violet);
+  --color-cosmic-blue: var(--cosmic-blue);
+  --color-cosmic-panel: var(--cosmic-panel);
+  --color-cosmic-line: var(--cosmic-line);
 }
 
 :root {
@@ -95,6 +102,13 @@
   --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
+  --cosmic-bg: oklch(0.135 0.055 283);
+  --cosmic-ink: oklch(0.97 0.015 285);
+  --cosmic-gold: oklch(0.86 0.15 84);
+  --cosmic-violet: oklch(0.75 0.16 292);
+  --cosmic-blue: oklch(0.76 0.13 235);
+  --cosmic-panel: oklch(0.98 0.02 285 / 0.07);
+  --cosmic-line: oklch(0.98 0.02 285 / 0.14);
 }
 
 .dark {
@@ -138,7 +152,82 @@
   }
 
   body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
+    background-color: var(--color-cosmic-bg);
+    color: var(--color-cosmic-ink);
+    font-family: "Manrope", sans-serif;
   }
+
+  button,
+  input {
+    font: inherit;
+  }
+}
+
+@keyframes cosmic-rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes cosmic-twinkle {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+
+@keyframes cosmic-orbit {
+  from { transform: rotate(0deg) translateX(64px) rotate(0deg); }
+  to { transform: rotate(360deg) translateX(64px) rotate(-360deg); }
+}
+
+@keyframes cosmic-shimmer {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 1; }
+}
+
+@keyframes cosmic-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 oklch(0.86 0.15 84 / 0.5); }
+  50% { box-shadow: 0 0 40px 10px oklch(0.86 0.15 84 / 0.25); }
+}
+
+@utility cosmic-rise {
+  animation: cosmic-rise 0.6s cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+
+@utility cosmic-twinkle {
+  animation: cosmic-twinkle 3.2s ease-in-out infinite;
+}
+
+@utility cosmic-orbit {
+  animation: cosmic-orbit 10s linear infinite;
+}
+
+@utility cosmic-shimmer {
+  animation: cosmic-shimmer 2.6s ease-in-out infinite;
+}
+
+@utility cosmic-pulse {
+  animation: cosmic-pulse 3s ease-in-out infinite;
+}
+
+@utility font-display {
+  font-family: "Manrope", sans-serif;
+}
+
+@utility font-mystic {
+  font-family: "Playfair Display", serif;
+}
+
+@utility cosmic-backdrop {
+  background:
+    radial-gradient(circle at 12% 0%, oklch(0.48 0.22 295 / 0.28), transparent 30%),
+    radial-gradient(circle at 100% 75%, oklch(0.44 0.2 245 / 0.22), transparent 34%),
+    var(--color-cosmic-bg);
+}
+
+@utility cosmic-stars {
+  background-image:
+    radial-gradient(circle, oklch(0.98 0.02 285 / 0.7) 0 1px, transparent 1.5px),
+    radial-gradient(circle, oklch(0.86 0.15 84 / 0.55) 0 1px, transparent 1.5px);
+  background-size: 112px 142px, 178px 198px;
+  background-position: 4px 12px, 72px 48px;
+  opacity: 0.5;
 }
